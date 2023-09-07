@@ -64,6 +64,14 @@
               placeholder="Nhập giới thiệu..."
             />
           </el-form-item>
+          <el-form-item label="Tiện ích">
+            <el-input
+              v-model="formArea.demo"
+              :rows="2"
+              type="textarea"
+              placeholder="Nhập giới thiệu..."
+            />
+          </el-form-item>
         </el-form>
         <div class="mt-5" align="right">
           <el-button type="danger" @click="dialogTableVisible = false"

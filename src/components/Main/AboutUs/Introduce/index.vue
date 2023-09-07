@@ -16,10 +16,11 @@
       </div>
     </div>
     <div class="container">
+      <!-- Giới thiệu -->
       <div class="about-us-content">
         <div class="row">
           <div
-            class="col-lg-12 col-md-12 elementor"
+            class="col-12 p-0 elementor"
             data-aos="fade-right"
             data-aos-offset="300"
             data-aos-easing="ease-in-sine"
@@ -58,7 +59,42 @@
           </div>
         </div>
       </div>
-      <div>
+      <!-- Tiện ích -->
+      <div class="utilities">
+        <div>
+          <h4>Tiện ích tốt nhất , giá tốt nhất</h4>
+        </div>
+        <div>
+          <h6>
+            Những gì chúng tôi cung cấp tại
+            {{
+              route.name == "about-us-homestay" ? "Homestay" : "Chung cư mini"
+            }}
+          </h6>
+        </div>
+        <div class="row"></div>
+      </div>
+      <div class="mt-5">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-12">
+            <img style="width: 100%" src="../../../../assets/aboutus.jpg" />
+          </div>
+          <div class="col-lg-6 col-md-6 col-12">
+            <div v-for="(item, index) in list" :key="index" class="text-tt">
+              + {{ item }}
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- list phòng -->
+      <div class="py-5">
+        <div class="text-option  py-5">
+          Danh sách phòng tại {{
+            route.name == "about-us-homestay"
+              ? "Homestay Ocean park"
+              : "Chung cư mini"
+          }}
+        </div>
         <div class="row">
           <div
             class="col-lg-4 col-md-4 col-sm-6 col-6"
@@ -106,6 +142,7 @@ export default {
   setup() {
     const router = useRouter();
     const route = useRoute();
+    const list = ref(["wiffi", "đồ ăn", "nước uônhs"]);
     const dataRoom = ref([
       {
         img: "https://upanh123.com/wp-content/uploads/2020/09/f676521b471839e8428f79b94441d641.jpg",
@@ -193,15 +230,6 @@ export default {
       },
     ]);
     const contentItem = ref(false);
-    created();
-    function created() {
-      setTimeout(() => {
-        title.value = !title.value;
-      }, 0);
-      setTimeout(() => {
-        contentItem.value = !contentItem.value;
-      }, 0);
-    }
     function handlePush(i) {
       if (i) {
         router.push({
@@ -209,7 +237,7 @@ export default {
         });
       }
     }
-    return { handlePush, route, dataRoom, contentItem };
+    return { handlePush, route, dataRoom, contentItem, list };
   },
 };
 </script>
@@ -238,7 +266,7 @@ export default {
   }
 }
 .about-us-content {
-  padding: 50px 30px;
+  padding: 30px 30px;
   img {
     width: 100%;
   }
@@ -271,7 +299,7 @@ export default {
           width: 100px;
           height: 95px;
         }
-        h5 {
+        h6 {
           font-weight: 700;
           text-transform: uppercase;
         }
@@ -282,7 +310,7 @@ export default {
           font-size: 1.1rem;
         }
         &:hover {
-          h5 {
+          h6 {
             color: #cf9d6c;
           }
         }
@@ -294,7 +322,9 @@ export default {
   padding: 0 100px 20px 20px;
   h2 {
     text-transform: uppercase;
-    font-size: 2rem;
+    text-align: center;
+    font-size: 1.7rem;
+    color: #cf9d6c;
   }
   b {
     font-size: 1.2rem;
@@ -381,5 +411,23 @@ export default {
       color: #000;
     }
   }
+}
+.utilities {
+  text-align: center;
+  h4 {
+    text-transform: uppercase;
+  }
+  h6 {
+    color: #cf9d6c;
+  }
+}
+.text-tt {
+  font-size: 17px;
+}
+.text-option {
+  text-transform: uppercase;
+  font-size: 20px;
+  text-align: center;
+  color: #cf9d6c;
 }
 </style>
